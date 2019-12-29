@@ -1,5 +1,5 @@
 <template>
-  <div :class="{hasLabel: label, hasError: error}">
+  <div :class="{hasLabel: label, hasError}">
     <label class="input-label" v-if="label">{{label}}</label>
     <div class="input">
       <span class="input-wrapper">
@@ -13,7 +13,9 @@
         />
       </span>
     </div>
-    <label class="input-error" v-if="error">{{error}}</label>
+    <template v-if="hasError">
+      <label class="input-error" v-for="(errorMsg, id) in errorMessages" :key="id">{{errorMsg}}</label>
+    </template>
   </div>
 </template>
 <script>
@@ -25,17 +27,21 @@ export default {
     },
     placeholder: String,
     label: String,
-    error: String,
     value: [Number, String],
     inValid: Function,
     isRequired: {
       type: Boolean,
       default: false
+    },
+    rules: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      errorText: ""
+      errorMessages: [],
+      hasError: false
     };
   },
   computed: {
@@ -55,11 +61,34 @@ export default {
     },
     handleBlur(e) {
       e.preventDefault();
+      this.validate(null);
       this.$el.removeAttribute("focus");
       this.$emit("blur", this);
     },
     handleInput(e) {
       this.$emit("input", e.target.value.length == 0 ? null : e.target.value);
+    },
+    validate() {
+      const errorMessages = [];
+      const value = this.content;
+      console.log("value", value);
+      for (let index = 0; index < this.rules.length; index++) {
+        const rule = this.rules[index];
+        const valid = typeof rule === "function" ? rule(value) : rule;
+
+        console.log("valid", valid);
+        if (typeof valid === "string") {
+          errorMessages.push(valid);
+        } else if (typeof valid !== "boolean") {
+          console.error(
+            `Rules should return a string or boolean, received '${typeof valid}' instead`
+          );
+        }
+      }
+
+      this.errorMessages = errorMessages;
+      this.hasError = errorMessages.length === 0;
+      return this.hasError;
     }
   }
 };
@@ -75,7 +104,7 @@ div[focus] {
 }
 div.hasError {
   .input {
-    border: 1px solid #e12f22;
+    border: 1px solid $error;
   }
 }
 .input {
