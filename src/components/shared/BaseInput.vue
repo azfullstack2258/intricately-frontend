@@ -71,12 +71,11 @@ export default {
     validate() {
       const errorMessages = [];
       const value = this.content;
-      console.log("value", value);
+
       for (let index = 0; index < this.rules.length; index++) {
         const rule = this.rules[index];
         const valid = typeof rule === "function" ? rule(value) : rule;
 
-        console.log("valid", valid);
         if (typeof valid === "string") {
           errorMessages.push(valid);
         } else if (typeof valid !== "boolean") {
@@ -87,7 +86,7 @@ export default {
       }
 
       this.errorMessages = errorMessages;
-      this.hasError = errorMessages.length === 0;
+      this.hasError = errorMessages.length > 0;
       return this.hasError;
     }
   }

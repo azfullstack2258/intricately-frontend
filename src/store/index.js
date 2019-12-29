@@ -9,7 +9,7 @@ const requireModule = require.context('./modules/', true, /index\.js/);
 const modules = requireModule.keys().reduce((accumulator, fileName) => {
   const moduleName = _camelCase(fileName.replace(/(\.\/|\/index\.js)/g, ''));
   accumulator[moduleName] = requireModule(fileName).default;
-
+  
   return accumulator;
 }, {});
 
