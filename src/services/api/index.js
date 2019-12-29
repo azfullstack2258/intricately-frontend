@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export * from './companyPageInfo';
+import { fetchPageInfo } from './companyPageInfo';
 
-export { axios };
+export { axios, fetchPageInfo };
 
 export default {
   install(Vue) {

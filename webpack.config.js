@@ -34,7 +34,7 @@ module.exports = {
       Services: path.resolve(__dirname, 'src', 'services')
     }
   },
-  entry: path.resolve(__dirname, 'src', 'index.js'),
+  entry: ['babel-polyfill', path.resolve(__dirname, 'src', 'index.js')],
   output: {
     filename: isProduction() ? 'assets/main.[contenthash].js' : 'assets/main.js',
     path: path.resolve(__dirname, 'build'),
