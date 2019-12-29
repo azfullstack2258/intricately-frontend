@@ -114,7 +114,10 @@ module.exports = {
         to: 'assets/images'
       },
     ]),
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 };
 
 /* eslint-enable */
