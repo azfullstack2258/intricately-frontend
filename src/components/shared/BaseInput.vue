@@ -3,9 +3,21 @@
     <label class="input-label" v-if="label">{{label}}</label>
     <div class="input">
       <span class="input-wrapper">
-        <input
+        <textarea
+          v-if="type === 'textarea'"
           :type="type"
           :placeholder="placeholder"
+          :rows="rows"
+          v-model="content"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @input="handleInput"
+        />
+        <input
+          v-else
+          :type="type"
+          :placeholder="placeholder"
+          :id="id"
           v-model="content"
           @focus="handleFocus"
           @blur="handleBlur"
@@ -16,6 +28,7 @@
     <template v-if="hasError">
       <label class="input-error" v-for="(errorMsg, id) in errorMessages" :key="id">{{errorMsg}}</label>
     </template>
+    <label class="input-error" v-if="error">{{error}}</label>
   </div>
 </template>
 <script>
@@ -27,6 +40,7 @@ export default {
     },
     placeholder: String,
     label: String,
+    nativeRef: String,
     value: [Number, String],
     inValid: Function,
     isRequired: {
@@ -36,6 +50,12 @@ export default {
     rules: {
       type: Array,
       default: () => []
+    },
+    id: String,
+    error: String,
+    rows: {
+      type: [Number, String],
+      default: 3
     }
   },
   data() {
@@ -61,12 +81,13 @@ export default {
     },
     handleBlur(e) {
       e.preventDefault();
-      this.validate(null);
+      this.validate();
       this.$el.removeAttribute("focus");
       this.$emit("blur", this);
     },
     handleInput(e) {
       this.$emit("input", e.target.value.length == 0 ? null : e.target.value);
+      this.validate();
     },
     validate() {
       const errorMessages = [];
@@ -158,6 +179,13 @@ input {
 }
 .input-suffix {
   padding-left: 0.4em;
+}
+textarea {
+  font-size: inherit;
+  width: 100%;
+  display: table-cell;
+  border: 0;
+  border-radius: 0;
 }
 </style>
 
