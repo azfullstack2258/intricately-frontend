@@ -2,7 +2,6 @@ import { fetchPageInfo } from 'Services/api';
 
 const loadCompanyPageInfo = async (context, company) => {
   const response = await fetchPageInfo(company);
-  console.log(response);
   context.dispatch('updateCompanyPageInfo', response.data);
 };
 

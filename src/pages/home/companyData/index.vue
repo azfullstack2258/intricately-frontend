@@ -52,6 +52,7 @@
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
+import numeral from "numeral";
 
 const { mapState } = createNamespacedHelpers("companyData");
 
@@ -87,7 +88,7 @@ export default {
         if (this.focused === "spend") {
           return this.spend || "";
         } else {
-          return this.spend && `$${this.spend}`;
+          return this.spend && numeral(this.spend).format("$0,0");
         }
       },
       set: function(value) {
@@ -100,8 +101,11 @@ export default {
     },
     companySpendAbility() {
       if (this.spendAbilityMin || this.spendAbilityMax) {
-        return `${(this.spendAbilityMin && `$${this.spendAbilityMin}`) ||
-          ""} - ${(this.spendAbilityMax && `$${this.spendAbilityMax}`) || ""}`;
+        return `${(this.spendAbilityMin &&
+          numeral(this.spendAbilityMin).format("$0,0")) ||
+          ""} - ${(this.spendAbilityMax &&
+          numeral(this.spendAbilityMax).format("$0,0")) ||
+          ""}`;
       }
       return "";
     },
