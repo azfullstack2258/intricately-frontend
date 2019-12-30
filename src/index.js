@@ -11,7 +11,7 @@ Vue.use(VModal);
 Vue.mixin({
   methods: {
     imageUrl(image) {
-      return require(`Images/${image}`);
+      return require(`./images/${image}`);
     }
   },
 });

@@ -1,14 +1,14 @@
 export const companyPageInfo = {
   activities: [
     {
-      created_at: 15838283,
+      created_at: 1575949710000,
       type: 'launch',
       image: 'content-delivery.png',
-      company_name: '',
-      property_name: '',
+      company_name: 'Microsoft',
+      property_name: 'M-Cloud',
     },
     {
-      created_at: 15838283,
+      created_at: 1576208910000,
       type: 'replace',
       image: 'cloud-hosting.png',
       company_name: 'Molina Healthcare',
@@ -19,7 +19,7 @@ export const companyPageInfo = {
       replaced_company_name: 'Microsoft',
     },
     {
-      created_at: 15838283,
+      created_at: 1576381710000,
       type: 'replace',
       image: 'performance-monitoring.png',
       company_name: 'Kaiser Permanente',
@@ -30,7 +30,7 @@ export const companyPageInfo = {
       replaced_company_name: 'Microsoft',
     },
     {
-      created_at: 15838283,
+      created_at: 1576468110000,
       type: 'replace',
       image: 'dns.png',
       company_name: 'Express Scripts',
@@ -41,7 +41,7 @@ export const companyPageInfo = {
       replaced_company_name: 'Microsoft',
     },
     {
-      created_at: 15838283,
+      created_at: 1576554510000,
       type: 'replace',
       image: 'traffic-management.png',
       company_name: 'Molina Healthcare',
@@ -52,7 +52,7 @@ export const companyPageInfo = {
       replaced_company_name: 'Microsoft',
     },
     {
-      created_at: 15838283,
+      created_at: 1576813710000,
       type: 'replace',
       image: 'waf-d-dos-security.png',
       company_name: 'Kaiser Permanente',
@@ -63,7 +63,7 @@ export const companyPageInfo = {
       replaced_company_name: 'Microsoft',
     },
     {
-      created_at: 15838283,
+      created_at: 1576986510000,
       type: 'replace',
       image: 'content-delivery.png',
       company_name: 'Express Scripts',
@@ -74,7 +74,7 @@ export const companyPageInfo = {
       replaced_company_name: 'Microsoft',
     },
     {
-      created_at: 15838283,
+      created_at: 1577159310000,
       type: 'replace',
       image: 'video-platform.png',
       company_name: 'Cloud Ochestration',
@@ -97,9 +97,16 @@ export const companyPageInfo = {
       image: 'fill-1@2x.png'
     }
   ],
-  spend_history_graph_data: [
-
-  ],
+  spend_history_graph_data: {
+    labels: [0, 2, 4, 6, 8, 10, 12],
+    datasets: [
+      {
+        label: '',
+        backgroundColor: '#f87979',
+        data: [20000, 50000, 35493, 29334, 60545, 84934, 90000]
+      }
+    ]
+  },
   spend_history: [
     {
       product_name: 'Google Cloud Platform',
