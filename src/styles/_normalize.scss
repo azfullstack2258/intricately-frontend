@@ -1,5 +1,4 @@
 @import '_reset.scss';
-@import '_color.scss';
 
 body, html {
     font-family: 'Rubik';
@@ -8,5 +7,8 @@ body, html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 0;
-    margin: 10px;
+}
+body {
+    margin: 0;
+    background: $background;
 }

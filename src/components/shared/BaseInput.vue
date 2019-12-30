@@ -114,8 +114,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "Styles/_reset.scss";
-@import "Styles/_color.scss";
+@import "Styles/_variables.scss";
 
 div[focus] {
   .input {

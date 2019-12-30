@@ -1,0 +1,13 @@
+.layout-page-content {
+  margin: auto;
+  width: 990px;
+  height: calc(100vh - 180px);
+  display: flex;
+  .side-navbar {
+    width: 200px;
+    margin-right: 20px;
+  }
+  #content {
+    flex-grow: 1;
+  }
+}

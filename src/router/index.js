@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
+import HomeRootView from 'Pages/home/index.vue';
 import CompanyDataPage from 'Pages/home/companyData/index.vue';
 import CompanyTablePage from 'Pages/home/companyTable/index.vue';
 import CompanyPage from 'Pages/home/companyPage/index.vue';
@@ -12,22 +13,26 @@ const routes = [
     path: '/',
     redirect: { name: 'company-data' },
     name: 'home',
+    component: HomeRootView,
+    children: [
+      {
+        path: 'company-data',
+        name: 'company-data',
+        component: CompanyDataPage,
+      },
+      {
+        path: 'company-table',
+        name: 'company-table',
+        component: CompanyTablePage,
+      },
+      {
+        path: 'company-page',
+        name: 'company-page',
+        component: CompanyPage,
+      },
+    ]
   },
-  {
-    path: '/company-data',
-    name: 'company-data',
-    component: CompanyDataPage,
-  },
-  {
-    path: '/company-table',
-    name: 'company-table',
-    component: CompanyTablePage,
-  },
-  {
-    path: '/company-page',
-    name: 'company-page',
-    component: CompanyPage,
-  },
+  
   {
     path: '*',
     redirect: '/'
