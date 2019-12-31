@@ -1,0 +1,18 @@
+@mixin avatar($box-width: 80px, $box-height: 80px, $image-width: 40px, $image-height: 40px) {
+  width: $box-width;
+  height: $box-height;
+  min-width: $box-width;
+  min-height: $box-height;
+  background: white;
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 1px 3px 5px 0px rgba(0,0,0,0.4);
+  img {
+    width: $image-width;
+    height: $image-height;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

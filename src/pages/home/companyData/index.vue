@@ -1,6 +1,8 @@
 <template>
-  <div>
-    Company Data
+  <div class="company-data__container">
+    <div
+      class="description"
+    >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>
     <BaseInput
       label="Company Name"
       placeholder="e.g. Your Company Name"
@@ -25,7 +27,7 @@
       :error="spendAbilityMin > spendAbilityMax ? 'Max value should be larger than min value.' : ''"
       @focus="handleSpendFocus"
     />
-    <template v-if="editingAbility">
+    <div v-if="editingAbility" class="ability-editbox">
       <BaseInput
         ref="spendAbilityMin"
         id="ability-min"
@@ -34,20 +36,33 @@
         v-model="companySpendAbilityMin"
       />
       <BaseInput type="number" label="Company Spend Ability Max" v-model="companySpendAbilityMax" />
-      <button type="button" @click="finishEditingAbility">Ok</button>
-    </template>
+      <BaseButton @click="finishEditingAbility">Save</BaseButton>
+    </div>
     <BaseInput
       type="textarea"
-      label="Notes"
+      :label="'Notes' | uppercase"
       placeholder="e.g. Good Tech Company"
       v-model="companyNotes"
       @focus="showCompanyNotesModal"
     />
-    <modal name="company-notes">
-      <span>Additional Notes</span>
-      <BaseInput type="textarea" placeholder="e.g. Good Tech Company" v-model="compNotes" />
-      <button type="button" @click="saveNotes">Save</button>
-    </modal>
+    <BaseDialog name="company-notes" class="company-notes__modal">
+      <template slot="header">
+        <div class="modal-header">
+          <div class="title">{{ 'Additional Notes' | uppercase }}</div>
+          <img :src="imageUrl('close.png')" alt="close_ico" @click="closeNotesModal" />
+        </div>
+      </template>
+      <template slot="content">
+        <div class="modal-content">
+          <BaseInput type="textarea" placeholder="e.g. Good Tech Company" v-model="compNotes" />
+        </div>
+      </template>
+      <template slot="footer">
+        <div class="modal-footer">
+          <BaseButton @click="saveNotes">Save</BaseButton>
+        </div>
+      </template>
+    </BaseDialog>
   </div>
 </template>
 <script>
@@ -160,7 +175,9 @@ export default {
         key: "notes",
         value: this.compNotes
       });
-
+      this.closeNotesModal();
+    },
+    closeNotesModal() {
       this.$modal.hide("company-notes");
     },
     showCompanyNotesModal() {

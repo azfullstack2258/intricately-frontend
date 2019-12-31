@@ -2,8 +2,9 @@
   <div class="layout-container">
     <div id="layout" class="layout">
       <Header />
+      <Breadcrumb />
       <div class="layout-page-content">
-        <div class="side-navbar">Sidebar</div>
+        <Sidebar />
         <main id="content">
           <router-view></router-view>
         </main>
@@ -14,10 +15,14 @@
 </template>
 <script>
 import Header from "Components/layout/Header.vue";
+import Sidebar from "Components/layout/Sidebar.vue";
+import Breadcrumb from "Components/layout/Breadcrumb.vue";
 
 export default {
   components: {
-    Header
+    Header,
+    Sidebar,
+    Breadcrumb
   }
 };
 </script>

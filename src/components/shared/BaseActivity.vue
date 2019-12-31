@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <span>{{ fromNow }}</span>
+    <div class="time">{{ fromNow }}</div>
     <img :src="image" :alt="data.image" />
     <div class="content">
       <span v-if="data.type === 'launch'">{{ data.company_name }} launched {{ data.property_name }}</span>
@@ -37,10 +37,30 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "Styles/_variables.scss";
+
 .container {
+  padding: 15px;
+  border-top: 1px solid $border-color;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  > * {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .time {
+    min-width: 100px;
+    color: $grey;
+    font-weight: 500;
+  }
   .content {
+    flex-grow: 1;
     .replaced-company {
       text-decoration: line-through;
+      color: $grey;
     }
   }
 }

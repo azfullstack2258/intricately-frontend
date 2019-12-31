@@ -134,8 +134,9 @@ div.hasError {
   display: table;
   padding: 9px 16px;
   background: #ffffff;
-  border: 1px solid #e0e0e0;
+  border: 1px solid $border-color;
   box-sizing: border-box;
+  box-shadow: 0px 0px 4px rgba(167, 149, 149, 0.2);
   border-radius: 4px;
 }
 .input-label {
@@ -143,8 +144,9 @@ div.hasError {
   line-height: 24px;
   display: flex;
   align-items: center;
-  color: #222;
-  margin-bottom: 8px;
+  color: $grey;
+  margin-bottom: 4px;
+  text-transform: uppercase;
 }
 .input-error {
   font-size: 14px;
@@ -159,12 +161,16 @@ div.hasError {
   display: table-cell;
 }
 
-input {
+input,
+textarea {
   font-size: inherit;
   width: 100%;
   display: table-cell;
   border: 0;
   border-radius: 0;
+  &::placeholder {
+    color: $light-grey;
+  }
 }
 
 .input-prefix,
@@ -178,13 +184,6 @@ input {
 }
 .input-suffix {
   padding-left: 0.4em;
-}
-textarea {
-  font-size: inherit;
-  width: 100%;
-  display: table-cell;
-  border: 0;
-  border-radius: 0;
 }
 </style>
 

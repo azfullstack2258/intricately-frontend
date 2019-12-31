@@ -1,7 +1,7 @@
 .layout-page-content {
   margin: auto;
-  width: 990px;
-  height: calc(100vh - 180px);
+  width: 1050px;
+  height: calc(100vh - 270px);
   display: flex;
   .side-navbar {
     width: 200px;
@@ -9,5 +9,133 @@
   }
   #content {
     flex-grow: 1;
+    width: calc(100% - 220px);
+    overflow-y: auto;
+    .company-data {
+      &__container {
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        padding: 20px;
+        > * {
+          margin-bottom: 30px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        .ability-editbox {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+        .company-notes__modal {
+          .v--modal {
+            display: flex;
+            flex-direction: column;
+            width: fit-content !important;
+            height: fit-content !important;
+            min-width: 600px;
+            .modal-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+              .title {
+                color: $grey;
+              }
+              img {
+                cursor: pointer;
+              }
+            }
+            .modal-content {
+              flex-grow: 1;
+            }
+            .modal-footer {
+              margin-top: 30px;
+              button {
+                float: right;
+              }
+            }
+          }
+        }
+      }
+    }
+    .company-page {
+      &__container {
+        .company-info {
+          display: flex;
+          .avatar {
+            @include avatar();
+          }
+          .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 20px;
+            p {
+              margin: 0;
+              font-size: 36px;
+            }
+            .location {
+              display: flex;
+              align-items: center;
+              img {
+                height: 20px;
+                margin-right: 10px;
+              }
+              span {
+                color: grey;
+                font-size: 14px;
+              }
+            }
+          }
+        }
+        .company-description {
+          line-height: 25px;
+          margin: 30px 0;
+          a {
+            color: $primary;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+        .main-content {
+          display: flex;
+          .part {
+            width: 50%;
+            &:first-child {
+              margin-right: 20px;
+            }
+            .panel-container {
+              margin-bottom: 20px;
+
+              .panel-content {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                .avatar {
+                  @include avatar(60px, 60px, 50px, fit-content);
+                  margin-right: 10px;
+                }
+                &.history {
+                  .avatar {
+                    @include avatar(60px, 60px, 50px, 50px);
+                  }
+                }
+              }
+
+              .graph-container {
+                canvas {
+                  height: 150px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
+}
+.breadcrumb-nav {
+  margin: auto;
+  width: 1050px;
 }
